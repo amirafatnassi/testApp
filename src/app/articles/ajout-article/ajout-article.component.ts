@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { ArticlesService } from '../services/articles.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ArticleService } from '../services/articles.service';
 
 @Component({
   selector: 'app-ajout-article',
@@ -8,7 +8,7 @@ import { ArticlesService } from '../services/articles.service';
   styleUrls: ['./ajout-article.component.css'],
 })
 export class AjoutArticleComponent implements OnInit {
-  constructor(private articleService: ArticlesService) {}
+  constructor(private articleService: ArticleService) {}
   ngOnInit() {}
   
   articleForm = new FormGroup({
@@ -19,22 +19,14 @@ export class AjoutArticleComponent implements OnInit {
   })
 
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
-    const nouveauArticle = { id: this.articleService.articles.length, ...form.value };
-    console.log(nouveauArticle);
-    this.articleService.articles.push(nouveauArticle);
-    console.log(this.articleService.articles);
-  }
-  
   onSubmitFormGroupe() {
     console.log(this.articleForm.value);
     const nouveauArticle = {
       id: this.articleService.articles.length,
-      category: this.articleForm.value.category,
-      title: this.articleForm.value.title,
-      img: this.articleForm.value.img,
-      message: this.articleForm.value.message,
+      category: this.articleForm?.value.category || '',
+      title: this.articleForm?.value.title || '',
+      img: this.articleForm?.value.img || '',
+      message: this.articleForm?.value.message || '',
     };
     console.log(nouveauArticle);
     this.articleService.articles.push(nouveauArticle);

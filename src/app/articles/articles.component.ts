@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ArticlesService } from './services/articles.service';
+import { ArticleService } from './services/articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -7,11 +7,11 @@ import { ArticlesService } from './services/articles.service';
   styleUrls: ['./articles.component.css'],
 })
 export class ArticlesComponent {
-  constructor(private articleService: ArticlesService) {}
+  constructor(private articleService: ArticleService) {}
   today = new Date();
   articles = this.articleService.articles;
-  categories = this.articleService.categories;
-  
+  categories=this.articleService.categories;
+
   ngOnInit(): void {
     console.log('hello');
   }
